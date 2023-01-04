@@ -121,7 +121,7 @@ Then the file will create a "vbc.exe" process in a suspended state inject and in
 
 After dumping the injected file out of memory we just need to unmap it manually then we now have the second stage file to proceed with our analysis which is a ".NET" file
 
-![error](Pics/Second.png)
+![error](Pics/second.png)
 
 The malware starts by checking the region of the device where it runs, if it is in one of the below countries it will just exit without doing anything.
 
