@@ -175,7 +175,7 @@ rule redline : infostealer
 		author = "Amr Ashraf"
 		
 	strings:
-		$mz = {4D 5A}			//PE File
+		$mz = {4D 5A}			//MZ header
 		
 		$string1 = "Discord"
 		
