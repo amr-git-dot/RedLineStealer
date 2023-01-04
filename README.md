@@ -166,6 +166,7 @@ Here is a list of the data that has been collected.
 	Antiviruses
 	screenshots
 
+## Yara rule :
 
 ```Yara
 rule redline : infostealer
