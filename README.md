@@ -1,13 +1,13 @@
 # RedLineStealer Malware Analysis :
 
-## Content :
+## Content 
 	1 - Manual unpacking for the first stage.
 	2 - Analysis of the shell code injected.
 	3 - Extracting the second Stage.
 	4 - List the actual functionalities of the malware.
 	5 - Yara rule for detecting the unpacked sample.
 
-## Basic info :
+## Basic info 
 	md5     	FEA0D408C87697BE73C07B988419DC12
 	sha1 		EDE45222A0BBD2BECBD21B20897DB5BCC048B991
 	sha256  	DD14B18A44EF6AC49EDFE5952D5FD8D5C83FC887D405E97DA15E572ED092B221
@@ -20,7 +20,7 @@ and the imports and loaded libraries are very small so I believe that it will us
 
 On trying to execute the file to inspect its behavior the file just exits silently so it may detected that it's running inside a VM So I quickly decided to proceed with the advanced analysis state
 
-## Advanced Analysis :
+## Advanced Analysis 
 
 At the start the program concatenates two strings together "C:\\Windows\\Microsoft.NET\\Frame" we don't know what it's doing for now but we will trace that while going on the investigation, but after that, there is a call to "CreateThread" with the address of the function below.
 
@@ -117,7 +117,7 @@ Then the file will create a "vbc.exe" process in a suspended state inject and in
 
 ![error](Pics/injected.png)
 
-## Second Stage :
+## Second Stage 
 
 After dumping the injected file out of memory we just need to unmap it manually then we now have the second stage file to proceed with our analysis which is a ".NET" file
 
@@ -168,7 +168,7 @@ Here is a list of the data that has been collected.
 
 ## Yara rule :
 
-```Yara
+```css
 rule redline : infostealer
 {
 	meta:
@@ -178,17 +178,17 @@ rule redline : infostealer
 	strings:
 		$mz = {4D 5A}			//MZ header
 		
-		$string1 = "Discord"
+		$string1 = "DownloadAndExecuteUpdate"
 		
 		$string2 = "net.tcp://"
 		
 		$string3 = "get_VirtualScreenWidth"
 		
-		$string4 = "Syncretise.exe"
+		$string4 = "StringDecrypt"
 		
 		$string5 = "ChromeGetRoamingName"
 		
-		$string6 = "IsNullOrWhiteSpace"
+		$string6 = "SystemInfoHelper"
 		
 		$string7 ="cookies.sqlite"
 
